@@ -79,9 +79,17 @@ const ToDo =()=>{
         });
     }
 
-    const deleteModal =(index)=>{
+    const deleteModal =(data, index)=>{
+        const obj = temp.filter((d)=> d===data)[0];
+        console.log(obj);
         setTodos((prevVal)=>{
-            let newData = prevVal.todo.filter((_, i)=>i!= index);
+            let newData;
+            if (obj){
+                setTemp((prev)=> temp.filter((d)=>d!==data));
+                newData = prevVal.todo.filter((d)=> d!==obj);
+            }else{
+                newData = prevVal.todo.filter((_, i)=>i!= index);
+            }
             return {todo:newData}
         });
     }
@@ -96,7 +104,12 @@ const ToDo =()=>{
         });
     }
     const handleCategory=(category)=>{
+        if(category==='all'){
+            setTemp([]);
+            return null;
+        }
         setTemp(()=>{
+            if(category==='all') return [];
             return todos.todo.filter((d)=>d.category===category);
         });
     }
@@ -190,6 +203,15 @@ const ToDo =()=>{
                 </Form>    
             </ToDoModal>
             
+            <Select 
+                style={{width:344, marginTop:15}}
+                onChange={handleCategory}
+            >
+                <Option value="work">Work</Option>
+                <Option value="personal">Personal</Option>
+                <Option value="shopping">shopping</Option>
+                <Option value="all">All</Option>
+            </Select>
             <div className="clearfix">
                 <div className="category">
                     <div className="work" onClick={()=>handleCategory('work')}>
@@ -220,7 +242,7 @@ const ToDo =()=>{
                             <div className="slot">
                                 <DeleteOutlined 
                                     className="delete"
-                                    onClick={()=>deleteModal(index)}
+                                    onClick={()=>deleteModal(data, index)}
                                 />
                                 <EditOutlined 
                                     className="edit-btn"
