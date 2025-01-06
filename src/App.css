@@ -1,0 +1,369 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body{
+    margin: 0px auto;
+    font-family: "Roboto", serif;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.box{
+    width: 350px;
+}
+nav{
+    background-color: #1da57a;
+    padding: 20px 40px 10px;
+}
+nav li{
+    float: right;
+    list-style-type: none;
+    background-color: inherit;
+    color: white;
+}
+nav li a{
+    color: white;
+}
+h1{
+    color: #1da57a;
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.box{
+    margin: 20px auto;
+}
+.box span{
+    font-weight: bold;
+}
+.box input{
+    width: 350px;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.box button{
+    width: 370px;
+    padding: 10px;
+    background-color: #5865F2;
+    border: 0;
+    color: white;
+    box-shadow: 0 3px 5px grey;
+    margin-bottom: 10px;
+}
+button:active {
+    transform: scale(0.99);  /* Shrinks the button */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);  /* Optional: adds a small shadow for effect */
+}
+button{
+    width: 370px;
+    padding: 10px;
+    background-color: #1da57a;
+    border: 0;
+    color: white;
+    box-shadow: 0 3px 5px grey;
+    cursor: pointer;
+}
+ul{
+    width: 90%;
+    background-color: yellow;
+    padding: 20px 40px;
+}
+li{
+    background-color: #9ACD32;
+    padding: 5px 20px 10px;
+    position: relative;
+    margin-bottom: 10px;
+    list-style-type: none;
+}
+.one{
+    padding-top: 20px;
+    margin-bottom: 10px;
+}
+a{
+    text-decoration: none;
+}
+.two{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: purple;
+}
+.three{
+    margin: 0 0 ;
+    font-weight: 800;
+    background-color: purple;
+    margin-right: 30px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+    color: whitesmoke;
+}
+.four{
+    float: right;
+    margin-right: 30px;
+    color: red;
+    padding:0;
+}
+.five{
+    color: orangered
+}
+.edit,.hide{
+    width: 80px;
+    padding: 5px 10px;
+    float: right;
+    margin: 10px 30px 0 0;
+}
+.hide{
+    float: left;
+    background-color: orange;
+    width: 120px;
+}
+.report-title{
+    font-weight: bold;
+    width: inherit;
+    padding: 10px;
+}
+.report-title:hover{
+    background-color: #FDFEEA;
+    cursor: pointer;
+}
+.show {
+    opacity: 1;
+}
+.slider{
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
+.slider img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+.slider img:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+    opacity: 0.9;          /* Subtle fade effect */
+  }
+.right, .left{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 190px;
+    display: none;
+}
+.right{
+    right: 0px;
+}
+.slider img.fade-out {
+    opacity: 0;
+    transform: scale(0.98);
+}
+  
+.slider img.fade-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.todo{
+    width: 400px;
+    height: 550px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    z-index: -1;
+}
+.todo h1{
+    font-family: "Poppins", serif;
+    font-weight: 650;
+    margin: 0;
+    float: left;
+}
+.header{
+    padding-bottom: 10px;
+}
+.change-mode{
+    float: right;
+    padding: 10px 20px;
+    background-color: skyblue;
+    margin:  5px 0 0 ;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 15px 0 15px 0;
+}
+.todo .search{
+    background-color: rgb(241, 241, 208);
+    border-radius: 30px;
+    margin-top: 5px;
+    box-shadow: 5px 5px 15px black;
+}
+.create-todo-button{
+    width: 100%;
+    margin-top: 15px;
+    padding: 50px;
+    font-size: larger;
+    font-family: "Roboto", serif;
+    background-color: rgb(204, 165, 93);
+    box-shadow: 5px 5px 15px black;
+}
+.modal-overlay {
+    width: 100%;
+    position: fixed;
+    top: 74px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+  }
+  
+  /* Modal content box */
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    height: 350px;
+    text-align: center;
+    position: relative;
+    left: -9px;
+    background-color: rgb(81, 211, 48);
+  }
+  
+  /* Close button for modal */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.modal-content .form{
+    font-weight: 700;
+    margin-top: 20px;
+}
+.form-btn-save{
+    width: 100px;
+    background-color: pink;
+}
+.list-of-todos{
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.list-of-todos .slot{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    background-color: rgb(228, 235, 129);
+    box-shadow: 5px 5px 15px black;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    position:relative;
+    overflow-y: scroll;
+}
+.slot img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+}
+.list-of-todos .slot .title{
+    font-weight: 600;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.list-of-todos .slot .desc{
+    margin-top: 0px;
+    margin-left: 10px;
+    color: green;
+}
+.modal-content .title{
+    margin-top: 20px;
+    background-color: #5865F2;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: 700;
+}
+.modal-content .description{
+    margin-top: 10px;
+    background-color: #9ACD32;
+    color: black;
+    width: 100%;
+    height: 180px;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 20px;
+}
+.delete, .edit-btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.edit-btn{
+    top: 40px;
+}
+.category{
+    float: right;
+    width: 50%;
+}
+.category>div{
+    width: 100%;
+    height: 120px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    background-color: #1da57a;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px black;
+}
+.category>div:hover{
+    background-color: #2ae5eb;
+}
+.category img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.category h3{
+    margin: 15px 5px 5px;
+    font-size: 15px;
+}
+.category p{
+    font-size: 7.5px;
+    margin: 5px 5px;
+}
