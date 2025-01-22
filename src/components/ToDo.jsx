@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input, Button, Form, Select } from 'antd';
+import { Input, Button, Form, Select, Checkbox} from 'antd';
 import { SearchOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import ToDoModal from "./ToDoModal.jsx";
 import ToDoDesc from "./ToDoDesc.jsx";
@@ -31,14 +31,9 @@ const ToDo =()=>{
             secondary:prevVal.primary
         }))
     }
-
-    const onSearch = (value) => {
-        console.log("Search Value:", value);
-    };
     
     const handleSubmit =()=>{
         form.validateFields().then((values)=>{
-            console.log(values);
             setTodos((prevVal)=>({
                 todo:[...prevVal.todo, values],
             }))
@@ -47,17 +42,18 @@ const ToDo =()=>{
                 name: '',
                 description: '',
                 category: '',
+                priority:'low',
             });
         });
     }
     const handleEdit =()=>{
         form.validateFields().then((values)=>{
-            console.log(values);
             setTodos((prevVal)=>{
                 let obj = {
                     name:values.name,
                     description:values.description,
                     category:values.category,
+                    priority:values.priority
                 }
                 prevVal.todo[values.index] = obj;
                 return {todo:[...prevVal.todo]}
@@ -66,6 +62,8 @@ const ToDo =()=>{
             form.setFieldsValue({
                 name: '',
                 description: '',
+                category:'personal',
+                priorityHigh:false,
             });
             setState('insert');
         });
@@ -81,7 +79,6 @@ const ToDo =()=>{
 
     const deleteModal =(data, index)=>{
         const obj = temp.filter((d)=> d===data)[0];
-        console.log(obj);
         setTodos((prevVal)=>{
             let newData;
             if (obj){
@@ -94,24 +91,32 @@ const ToDo =()=>{
         });
     }
     const updateTodo = (data, index)=>{
+        const obj = todos.todo.filter((d)=> d===data)[0];
+        let ind = todos.todo.findIndex((d)=>d===obj);
         setState('update');
         setOpen(true);
         form.setFieldsValue({
-            name:data.name,
-            description:data.description,
-            index: index,
-            category: data.category,
+            name:obj.name,
+            description:obj.description,
+            index: ind,
+            category: obj.category,
         });
     }
     const handleCategory=(category)=>{
-        if(category==='all'){
-            setTemp([]);
-            return null;
-        }
         setTemp(()=>{
-            if(category==='all') return [];
+            if(category==='all') return todos.todo;
             return todos.todo.filter((d)=>d.category===category);
         });
+    }
+    const searchToDos =(e)=>{
+        const value = e.target.value;
+        setTemp(()=>{
+            let first = todos.todo.filter((d)=>d.name.includes(value));
+            if (first.length===0){
+                first = todos.todo.filter((d)=>d.description.includes(value));
+            }
+            return first;
+        })
     }
     return(
         <div 
@@ -130,6 +135,7 @@ const ToDo =()=>{
                 className="search"
                 suffix={<SearchOutlined />}
                 allowClear
+                onChange={searchToDos}
             />
             <Button 
                 className="create-todo-button"
@@ -147,7 +153,7 @@ const ToDo =()=>{
                     form={form}
                     layout="vertical"
                     className="form"
-                    vinitialValues={{
+                    initialValues={{
                         category: 'personal',
                       }}
                 
@@ -194,11 +200,22 @@ const ToDo =()=>{
                     </Form.Item>
 
                     <Form.Item
+                        name="priority"
+                        label="Priority"
+                    >
+                        <Select>
+                            <Option value="high">High</Option>
+                            <Option value="low">Low</Option>
+                        </Select>
+                    </Form.Item>
+
+                    <Form.Item
                         name="index"
                         label=""
                     >
                         {state==='update'? <Input disabled/>: null}
                     </Form.Item>
+
                     <Button className="form-btn-save" onClick={()=>state==='insert'? handleSubmit():handleEdit()}>Save</Button>
                 </Form>    
             </ToDoModal>
@@ -212,34 +229,11 @@ const ToDo =()=>{
                 <Option value="shopping">shopping</Option>
                 <Option value="all">All</Option>
             </Select>
-            <div className="clearfix">
-                <div className="category">
-                    <div className="work" onClick={()=>handleCategory('work')}>
-                        <img src="src/assets/images/society.jpg" alt="" />
-                        <div>
-                            <h3>Work</h3>
-                            <p>Your professional life here</p>
-                        </div>
-                    </div>
-                    <div className="personal" onClick={()=>handleCategory('personal')}>
-                        <img src="src/assets/images/person.jpg" alt="" />
-                        <div>
-                            <h3>Personal</h3>
-                            <p>Your personal life here</p>
-                        </div>
-                    </div>
-                    <div className="shopping" onClick={()=>handleCategory('shopping')}>
-                        <img src="src/assets/images/environment.jpg" alt="" />
-                        <div>
-                            <h3>Shopping</h3>
-                            <p>Your shopping list here</p>
-                        </div>
-                    </div>
-                </div>
+            
                 <div className="list-of-todos">
                     {todos.todo.length>0 && 
-                        (temp.length>0? temp : todos.todo).map((data, index)=>
-                            <div className="slot">
+                        ( temp ?? todos.todo).map((data, index)=>
+                            <div className="slot" key={index} style={{backgroundColor: data.priority==='high'? "rgb(226, 146, 135)": "rgb(228, 235, 129)"}}>
                                 <DeleteOutlined 
                                     className="delete"
                                     onClick={()=>deleteModal(data, index)}
@@ -248,7 +242,7 @@ const ToDo =()=>{
                                     className="edit-btn"
                                     onClick={()=>updateTodo(data, index)}
                                 />
-                                <div key={index} className="clearfix" onClick={()=> updateModalDesc(data)}> 
+                                <div  className="clearfix" onClick={()=> updateModalDesc(data)}> 
                                     <img src="src/assets/images/knowledge.jpg" alt="" />
                                     <p className="title">{data.name}</p>
                                     <p className="desc">{data.description.slice(0,15) + "..."}</p>
@@ -257,7 +251,6 @@ const ToDo =()=>{
                         )
                     }
                 </div>
-            </div>
             <ToDoDesc 
                 visible={todoDescOpen}
                 title={modalDesc.title}

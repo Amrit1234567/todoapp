@@ -6,6 +6,8 @@ import Navbar from './components/Navbar.jsx'
 import Home from './components/Home.jsx';
 import ToDo from './components/ToDo.jsx';
 import './App.css'
+import Products from './components/Products.jsx';
+import ProductPage from './components/ProductPage.jsx';
 
 function App() {
   const [error, setError] = useState({
@@ -128,6 +130,7 @@ function App() {
                 <Route path='/form' element={myForm} />
                 <Route path='/report' element={report} />
                 <Route path='/todo' element={<ToDo/>} />
+                <Route path='/products' element={<ProductPage/>} />
             </Routes>
         </BrowserRouter>
     </>

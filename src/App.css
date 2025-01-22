@@ -234,7 +234,7 @@ a{
     padding: 20px;
     border-radius: 5px;
     width: 300px;
-    height: 350px;
+    height: 500px;
     text-align: center;
     position: relative;
     left: -9px;
@@ -268,7 +268,7 @@ a{
     background-color: pink;
 }
 .list-of-todos{
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
@@ -276,7 +276,7 @@ a{
 .list-of-todos .slot{
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: 41%;
     height: 100px;
     padding: 5px;
     background-color: rgb(228, 235, 129);
@@ -330,40 +330,60 @@ a{
 .edit-btn{
     top: 40px;
 }
-.category{
-    float: right;
-    width: 50%;
+.bottom-alert{
+    width:"340px"; 
+    height:"40px";
+    background-color:"red"; 
+    position:"fixed";
+    bottom:"15px";
+    border-radius: 10px;
+    box-shadow: 10px black;
 }
-.category>div{
+.product-box{
+    width: 200px;
+    padding-bottom: 1px;
+    background-color: grey;
+}
+.product-box p{
+    padding-left: 5px;
+}
+.product-box button{
+    width: 90px;
+    float: right;
+}
+.cart-section .cart{
+    float: right;
+    margin-top: 10px;
+    position: relative;
+}
+.cart-section > .cart > button{
+    padding: 5px auto;
+    text-align: center;
+    width: 150px;
+}
+.cart-section .cart .cart-products{
+    width: 300px;
+    height: 400px;
+    background-color: rgb(198, 238, 20);
+    overflow-y: scroll;
+    position: absolute;
+    right: 0px;
+}
+.cart-section .cart .cart-products .row{
+    height: 50px;
     width: 100%;
-    height: 120px;
-    margin-bottom: 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     cursor: pointer;
-    font-family: "Roboto", serif;
-    font-weight: 700;
-    background-color: #1da57a;
-    box-sizing: border-box;
-    padding: 5px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 15px black;
+    margin-bottom: 2px;
+    background-color: whitesmoke;
 }
-.category>div:hover{
-    background-color: #2ae5eb;
+.cart-section .cart .cart-products .row img{
+    float: left;
+    height: inherit;
+    width: auto;
 }
-.category img{
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-}
-.category h3{
-    margin: 15px 5px 5px;
-    font-size: 15px;
-}
-.category p{
-    font-size: 7.5px;
-    margin: 5px 5px;
+.cart-section .cart .cart-products .row p{
+    margin-left: 20px;
 }
